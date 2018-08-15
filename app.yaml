@@ -1,0 +1,24 @@
+runtime: python27
+api_version: 1
+threadsafe: yes
+
+handlers:
+
+- url: /(.+)
+  static_files: dist/gcp-cloudbuild-gae-angular/\1
+  upload: dist/gcp-cloudbuild-gae-angular/(.*)
+
+- url: /
+  static_files: dist/gcp-cloudbuild-gae-angular/index.html
+  upload: dist/gcp-cloudbuild-gae-angular/index.html
+
+skip_files:
+- e2e/
+- node_modules/
+- src/
+- ^(.*/)?\..*$
+- ^(.*/)?.*\.json$
+- ^(.*/)?.*\.md$
+- ^(.*/)?.*\.yaml$
+- ^Dockerfile
+- ^LICENSE
