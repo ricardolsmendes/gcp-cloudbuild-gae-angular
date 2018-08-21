@@ -13,11 +13,4 @@ handlers:
   upload: dist/gcp-cloudbuild-gae-angular/index.html
 
 skip_files:
-- e2e/
-- node_modules/
-- src/
-- ^(.*/)?\..*$
-- ^(.*/)?.*\.json$
-- ^(.*/)?.*\.md$
-- ^(.*/)?.*\.yaml$
-- ^LICENSE
+- ^(?!dist)
