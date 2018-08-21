@@ -20,5 +20,4 @@ skip_files:
 - ^(.*/)?.*\.json$
 - ^(.*/)?.*\.md$
 - ^(.*/)?.*\.yaml$
-- ^Dockerfile
 - ^LICENSE
