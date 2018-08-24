@@ -7,7 +7,7 @@ handlers:
 # All content is static, but there are specific rules to properly serve files and handle deeplinks.
 # Also, to enhance security, http requests are redirected to their equivalent https addresses.
 
-# "Assets" nested content is retrieved directly from their underlying folder.
+# "Assets" nested content is retrieved directly from its underlying folder.
 - url: /assets
   static_dir: dist/gcp-cloudbuild-gae-angular/assets
   secure: always
