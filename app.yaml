@@ -1,16 +1,50 @@
 runtime: python27
-api_version: 1
 threadsafe: yes
+api_version: 1
 
 handlers:
 
-- url: /(.+)
-  static_files: dist/gcp-cloudbuild-gae-angular/\1
-  upload: dist/gcp-cloudbuild-gae-angular/(.*)
+# All content is static, but there are specific rules to properly serve files and handle deeplinks.
+# Also, to enhance security, http requests are redirected to their equivalent https addresses.
 
-- url: /
+# "Assets" nested content is retrieved directly from their underlying folder.
+- url: /assets
+  static_dir: dist/gcp-cloudbuild-gae-angular/assets
+  secure: always
+
+# Content from the root folder needs to be handled in distinct ways.
+# Static files are retrieved exactly as they are, but their suffixes need to be mapped individually to avoid
+# them from being hit by the most general (catch-all) rule.
+- url: /(.*\.css)
+  static_files: dist/gcp-cloudbuild-gae-angular/\1
+  upload: dist/gcp-cloudbuild-gae-angular/(.*\.css)
+  secure: always
+
+- url: /(.*\.html)
+  static_files: dist/gcp-cloudbuild-gae-angular/\1
+  upload: dist/gcp-cloudbuild-gae-angular/(.*\.html)
+  secure: always
+
+- url: /(.*\.ico)
+  static_files: dist/gcp-cloudbuild-gae-angular/\1
+  upload: dist/gcp-cloudbuild-gae-angular/(.*\.ico)
+  secure: always
+
+- url: /(.*\.js)
+  static_files: dist/gcp-cloudbuild-gae-angular/\1
+  upload: dist/gcp-cloudbuild-gae-angular/(.*\.js)
+  secure: always
+
+- url: /(.*\.txt)
+  static_files: static/\1
+  upload: static/(.*\.txt)
+  secure: always
+
+# Catch-all rule, responsible from handling deeplinks.
+- url: /.*
   static_files: dist/gcp-cloudbuild-gae-angular/index.html
   upload: dist/gcp-cloudbuild-gae-angular/index.html
+  secure: always
 
 skip_files:
 - ^(?!dist)
