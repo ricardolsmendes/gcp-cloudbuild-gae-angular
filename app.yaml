@@ -36,8 +36,8 @@ handlers:
   secure: always
 
 - url: /(.*\.txt)
-  static_files: static/\1
-  upload: static/(.*\.txt)
+  static_files: dist/gcp-cloudbuild-gae-angular/\1
+  upload: dist/gcp-cloudbuild-gae-angular/(.*\.txt)
   secure: always
 
 # Catch-all rule, responsible from handling deeplinks.
