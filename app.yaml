@@ -2,48 +2,57 @@ runtime: python27
 threadsafe: yes
 api_version: 1
 
+# Google App Engine's cache default expiration time is 10 minutes. It's suitable for most Production
+# scenarios, but a shorter TTL may be desired for Development and QA, as it allows us to see a fresh
+# code in action just a minute after the deployment.
+default_expiration: "60s"
+
 handlers:
 
-# All content is static, but there are specific rules to properly serve files and handle deeplinks.
-# Also, to enhance security, http requests are redirected to their equivalent https addresses.
+# To enhance security, all http requests are redirected to their equivalent https addresses (secure: always).
 
-# "Assets" nested content is retrieved directly from its underlying folder.
+# Assets are retrieved directly from their parent folder.
 - url: /assets
-  static_dir: dist/gcp-cloudbuild-gae-angular/assets
+  static_dir: dist/assets
   secure: always
 
-# Content from the root folder needs to be handled in distinct ways.
-# Static files are retrieved exactly as they are, but their suffixes need to be mapped individually to avoid
-# them from being hit by the most general (catch-all) rule.
+# Static files located in the root folder are retrieved directly from there, but their suffixes need to be
+# mapped individually in order to avoid them from being hit by the most general (catch-all) rule.
 - url: /(.*\.css)
-  static_files: dist/gcp-cloudbuild-gae-angular/\1
-  upload: dist/gcp-cloudbuild-gae-angular/(.*\.css)
+  static_files: dist/\1
+  upload: dist/(.*\.css)
   secure: always
 
 - url: /(.*\.html)
-  static_files: dist/gcp-cloudbuild-gae-angular/\1
-  upload: dist/gcp-cloudbuild-gae-angular/(.*\.html)
+  static_files: dist/\1
+  upload: dist/(.*\.html)
   secure: always
 
 - url: /(.*\.ico)
-  static_files: dist/gcp-cloudbuild-gae-angular/\1
-  upload: dist/gcp-cloudbuild-gae-angular/(.*\.ico)
+  static_files: dist/\1
+  upload: dist/(.*\.ico)
   secure: always
 
 - url: /(.*\.js)
-  static_files: dist/gcp-cloudbuild-gae-angular/\1
-  upload: dist/gcp-cloudbuild-gae-angular/(.*\.js)
+  static_files: dist/\1
+  upload: dist/(.*\.js)
   secure: always
 
 - url: /(.*\.txt)
-  static_files: dist/gcp-cloudbuild-gae-angular/\1
-  upload: dist/gcp-cloudbuild-gae-angular/(.*\.txt)
+  static_files: dist/\1
+  upload: dist/(.*\.txt)
   secure: always
 
-# Catch-all rule, responsible from handling deeplinks.
+# Site root.
+- url: /
+  static_files: dist/index.html
+  upload: dist/index.html
+  secure: always
+
+# Catch-all rule, responsible from handling Angular application routes (deeplinks).
 - url: /.*
-  static_files: dist/gcp-cloudbuild-gae-angular/index.html
-  upload: dist/gcp-cloudbuild-gae-angular/index.html
+  static_files: dist/index.html
+  upload: dist/index.html
   secure: always
 
 skip_files:
