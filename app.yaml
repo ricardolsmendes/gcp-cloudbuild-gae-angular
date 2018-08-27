@@ -13,47 +13,47 @@ handlers:
 
 # Assets are retrieved directly from their parent folder.
 - url: /assets
-  static_dir: dist/assets
+  static_dir: dist/gcp-cloudbuild-gae-angular/assets
   secure: always
 
 # Static files located in the root folder are retrieved directly from there, but their suffixes need to be
 # mapped individually in order to avoid them from being hit by the most general (catch-all) rule.
 - url: /(.*\.css)
-  static_files: dist/\1
-  upload: dist/(.*\.css)
+  static_files: dist/gcp-cloudbuild-gae-angular/\1
+  upload: dist/gcp-cloudbuild-gae-angular/(.*\.css)
   secure: always
 
 - url: /(.*\.html)
-  static_files: dist/\1
-  upload: dist/(.*\.html)
+  static_files: dist/gcp-cloudbuild-gae-angular/\1
+  upload: dist/gcp-cloudbuild-gae-angular/(.*\.html)
   secure: always
 
 - url: /(.*\.ico)
-  static_files: dist/\1
-  upload: dist/(.*\.ico)
+  static_files: dist/gcp-cloudbuild-gae-angular/\1
+  upload: dist/gcp-cloudbuild-gae-angular/(.*\.ico)
   secure: always
 
 - url: /(.*\.js)
-  static_files: dist/\1
-  upload: dist/(.*\.js)
+  static_files: dist/gcp-cloudbuild-gae-angular/\1
+  upload: dist/gcp-cloudbuild-gae-angular/(.*\.js)
   secure: always
 
 - url: /(.*\.txt)
-  static_files: dist/\1
-  upload: dist/(.*\.txt)
+  static_files: dist/gcp-cloudbuild-gae-angular/\1
+  upload: dist/gcp-cloudbuild-gae-angular/(.*\.txt)
   secure: always
 
 # Site root.
 - url: /
-  static_files: dist/index.html
-  upload: dist/index.html
+  static_files: dist/gcp-cloudbuild-gae-angular/index.html
+  upload: dist/gcp-cloudbuild-gae-angular/index.html
   secure: always
 
 # Catch-all rule, responsible from handling Angular application routes (deeplinks).
 - url: /.*
-  static_files: dist/index.html
-  upload: dist/index.html
+  static_files: dist/gcp-cloudbuild-gae-angular/index.html
+  upload: dist/gcp-cloudbuild-gae-angular/index.html
   secure: always
 
 skip_files:
-- ^(?!dist)
+- ^(?!dist/gcp-cloudbuild-gae-angular)
