@@ -12,4 +12,4 @@ gcloud builds submit --config cloudbuild.yaml .
 
 ## Understand the concepts and automate more
 
-<a href="https://medium.com/@ricardolsmendes/continuous-delivery-in-google-cloud-platform-cloud-build-with-app-engine-8355d3a11ff5" target="_blank">Continuous Delivery in Google Cloud Platform — Cloud Build with App Engine</a> @ Medium
+<a href="https://medium.com/google-cloud/continuous-delivery-in-google-cloud-platform-cloud-build-with-app-engine-8355d3a11ff5" target="_blank">Continuous Delivery in Google Cloud Platform — Cloud Build with App Engine</a> @ Google Cloud / Medium
