@@ -56,4 +56,4 @@ handlers:
   secure: always
 
 skip_files:
-- (?!^dist)
+- ^(?!dist)

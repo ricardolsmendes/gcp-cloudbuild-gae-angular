@@ -1,10 +1,10 @@
 steps:
 
 - name: 'gcr.io/cloud-builders/npm'
-  args: [ 'i' ]
+  args: [ 'install' ]
 
 - name: 'gcr.io/cloud-builders/npm'
-  args: [ 'run', 'build', '--prod', '--build-optimizer' ]
+  args: [ 'run', 'build', '--prod' ]
 
 - name: 'gcr.io/cloud-builders/gcloud'
-  args: ['app', 'deploy', '-v=1']
+  args: [ 'app', 'deploy', '--version=1' ]
