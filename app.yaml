@@ -5,7 +5,7 @@ api_version: 1
 # Google App Engine's cache default expiration time is 10 minutes. It's suitable for most Production
 # scenarios, but a shorter TTL may be desired for Development and QA, as it allows us to see a fresh
 # code in action just a minute after the deployment.
-default_expiration: "60s"
+default_expiration: 60s
 
 handlers:
 
