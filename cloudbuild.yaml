@@ -7,4 +7,4 @@ steps:
   args: [ run, build, --prod ]
 
 - name: gcr.io/cloud-builders/gcloud
-  args: [ app, deploy, --version=1 ]
+  args: [ app, deploy, --version=$SHORT_SHA ]
